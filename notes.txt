@@ -1,0 +1,72 @@
+1. div left
+
+    5 div with class name list, draggable="true"
+
+2. div right 
+
+3. js, 
+
+    1. get list
+
+            let lists = document.getElementsByClassName("list");
+
+    2. get elmt 
+
+         let rightBox = document.getElementById("right");
+        let leftBox = document.getElementById("left");
+
+    3. loop through list
+
+        for(l of lists)
+
+    4. 3 actions dragstart, dragover, drop
+
+    5. for each list item 
+
+                l.addEventListener("dragstart", (e) => {
+
+
+        ***************** selected elmt***************************************
+
+                            let selected = e.target;
+
+        ***************** dragover***************************************
+
+                            rightBox.addEventListener("dragover", (e)=> {
+
+                                e.preventDefault();
+                            })
+
+        ***************** drop***************************************
+
+                            rightBox.addEventListener("drop",(e) => {
+
+                                rightBox.appendChild(selected);
+
+                ***************** null***************************************
+           
+                                selected = null;
+                            })
+
+        ***************** from right to left***************************************
+                            
+                            leftBox.addEventListener("dragover", (e)=> {
+
+                                e.preventDefault();
+                            })
+
+                            leftBox.addEventListener("drop",(e) => {
+
+                                leftBox.appendChild(selected);
+                                selected = null;
+                            })
+                        })
+        }
+
+
+
+1. always set drag over to prevent preventDefault
+
+2. draggable
+
+3. set selected null after drop, else we cannot drag each, all elmts will go together
